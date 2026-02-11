@@ -71,3 +71,93 @@ def user_verification():
             ID.append(user_ID)
             break
     return user_ID, user_name
+
+
+
+
+
+
+
+
+
+
+
+
+def add_member(user_ID):
+    global N, R, D, ID
+
+    valid_ranks = ["Captain", "Commander", "Lt.Commander", "Lieutenant", "Ensign", "Chief Officer", "Crewman"]
+    valid_divisions = ["Command", "Operations", "Sciences", "Engineering", "Medical", "Security"]
+
+    print("\n--- ADD CREW MEMBER ---")
+    print(" ")
+    print("These are the valid ranks: " + ", ".join(valid_ranks))
+    print("------------------------------")
+    print("These are the valid divisions: " + ", ".join(valid_divisions))
+    print("------------------------------")
+
+
+    print("Now please enter the new crew member's information: ")
+
+    while True:
+        new_member_N = input("Name: ").strip().title()
+
+        if new_member_N == "":
+           print("Name cannot be empty.")
+           continue
+        elif new_member_N in N:
+           print("Name already exists. Please enter a unique name.")
+           continue
+        else:
+            N.append(new_member_N)
+            break
+    
+
+    while True:
+
+        new_member_R = input("Rank: ").strip().title()
+
+        if new_member_R not in valid_ranks:
+            print("Invalid rank. Please enter a valid rank.")
+            continue
+        elif new_member_R == "":
+            print("Rank cannot be empty.")
+            continue
+        else:
+            R.append(new_member_R)
+            break
+
+
+    while True:   
+
+        new_member_D = input("Division: ").strip().title()
+        
+        if new_member_D not in valid_divisions:
+            print("Invalid division. Please enter a valid division.")
+            continue
+        elif new_member_D == "":
+            print("Division cannot be empty.")
+            continue
+        else:
+            D.append(new_member_D)
+            break
+    
+
+    while True:
+
+        new_member_ID = input("ID: ").strip()
+
+        if new_member_ID in ID:
+            print("ID already exists. Please enter a unique ID.")
+            continue
+        elif new_member_ID == "":
+            print("ID cannot be empty.")
+            continue
+        elif new_member_ID == user_ID:
+            print("Your ID is already registered.")
+            break
+        else:
+            ID.append(new_member_ID)
+            break
+    print("-------------------------------")
+    print(f"New member added: {new_member_N}, {new_member_R}, {new_member_D}, {new_member_ID}")
