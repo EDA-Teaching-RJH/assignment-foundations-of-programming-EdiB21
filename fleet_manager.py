@@ -1,3 +1,8 @@
+def main():
+    
+    init_database()
+    display_menu()
+
 
 def init_database():
     global N, R, D, ID
@@ -352,18 +357,4 @@ def additional_processes():
 
     
 
-
-
-
-
-
-
-
-
-
-
-#Start Of Program
-init_database()
-
-display_menu()  
-
+main()
