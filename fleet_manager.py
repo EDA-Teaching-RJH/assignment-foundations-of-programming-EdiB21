@@ -42,7 +42,7 @@ def display_menu():
         elif user_option == "6":
             calculate_payroll()
         elif user_option == "7":
-            x = 6
+            additional_processes()
         elif user_option == "8":
             print("Closing Terminal. \n. \n.. \n...")
             break
@@ -327,6 +327,27 @@ def calculate_payroll():
             total_cost += 100
     print("Total payroll of crew: " + str(total_cost) + " CRD")
 
+
+def additional_processes():
+    global N, R, D, ID
+
+    print("\n--- ADDITIONAL PROCESSES ---")
+    print(" ")
+
+    print("Options: \n1. Count officers \n /\/\/\MORE PROCESSES TO BE ADDED IN NEXT SYSTEM UPDATE/\/\/")
+
+    users_option = input("Select option: ").strip()
+
+    if users_option == "1":
+        officer_count = 0
+
+        for i in range(len(R)):
+            if R[i] == "Captain" or R[i] == "Commander":
+                officer_count += 1
+        print("Total number of high ranking officers: " + str(officer_count))
+    else:
+        print("Invalid option. Returning to main menu.") 
+        return
 
 
     
