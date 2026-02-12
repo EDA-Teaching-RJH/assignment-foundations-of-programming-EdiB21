@@ -1,3 +1,4 @@
+
 def init_database():
     global N, R, D, ID
     N = ["Picard", "Riker", "Data", "Forge", "Crusher"]
@@ -10,10 +11,10 @@ def init_database():
 def display_menu():
     global N, R, D, ID
 
-    print("Welcome to the Fleet Manager \n -----------------")
+    print("Welcome to the Fleet Manager Terminal \n -----------------")
     print("Please give your : Name and ID")
 
-    user_ID = user_verification()
+    user_ID, user_name = user_verification()
 
     while True:
         print("\n--- ACCESS MENU ---")
@@ -33,7 +34,7 @@ def display_menu():
         elif user_option == "2":
             add_member(user_ID)
         elif user_option == "3":
-            x = 2
+            remove_member()
         elif user_option == "4":
             x = 3
         elif user_option == "5":
@@ -43,7 +44,7 @@ def display_menu():
         elif user_option == "7":
             x = 6
         elif user_option == "8":
-            print("Closing Program. \n .... \n ....")
+            print("Closing Terminal. \n. \n.. \n...")
             break
 
 
@@ -60,6 +61,9 @@ def user_verification():
 
         user_ID = input("ID : ").strip()
 
+        if not (len(user_ID) == 3 and user_ID.isdigit()):
+            print("Invalid ID. ID must be 3-digits.")
+            continue
         if user_ID in ID:
             print("Access Denied, ID already exists.")
             continue
@@ -67,19 +71,21 @@ def user_verification():
             print("ID cannot be empty.")
             continue
         else:
-            print("ID accepted. \n ID registered. \n  Welcome: " + user_name +", " + user_ID)
-            ID.append(user_ID)
+            print("ID accepted. \n  Welcome: " + user_name +", " + user_ID)
             break
     return user_ID, user_name
 
 
+def display_roster():
+    global N, R, D, ID
 
-
-
-
-
-
-
+    print("\n\t\t  --- CREW ROSTER ---")
+    print("----------------------------------------------------")
+    print(f"{'|Name':<11} | {'Rank':<15} | {'Division':<12} | {'ID  |':<4}")
+    print("----------------------------------------------------")
+    for i in range(len(N)):
+        print(f"|{N[i]:<10} | {R[i]:<15} | {D[i]:<12} | {ID[i]:<3} |")
+    print("----------------------------------------------------")
 
 
 
@@ -153,11 +159,35 @@ def add_member(user_ID):
         elif new_member_ID == "":
             print("ID cannot be empty.")
             continue
-        elif new_member_ID == user_ID:
-            print("Your ID is already registered.")
-            break
         else:
             ID.append(new_member_ID)
             break
     print("-------------------------------")
     print(f"New member added: {new_member_N}, {new_member_R}, {new_member_D}, {new_member_ID}")
+
+
+def remove_member():
+    global N, R, D, ID
+
+    print("\n--- REMOVE CREW MEMBER ---")
+    print(" ")
+
+
+    while True:
+
+        remove_ID = input("Enter the ID of the memeber you wish to remove: ").strip()
+
+        if remove_ID in ID:
+
+            find_ID = ID.index(remove_ID)
+
+            N.pop(find_ID)
+            R.pop(find_ID) 
+            D.pop(find_ID)
+            ID.pop(find_ID)
+
+            print("The member with ID " + "'" + remove_ID + "'" + " and name " + "'" + N[find_ID] + "'" + " has been removed from the system.")
+            break
+        else:
+            print("ID not found. " + remove_ID + " is not registered in the system.")
+            return
