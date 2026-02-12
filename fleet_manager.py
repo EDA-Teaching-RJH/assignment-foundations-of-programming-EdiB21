@@ -21,7 +21,7 @@ def display_menu():
         print("1. View Crew Members")
         print("2. Add Crew Member")
         print("3. Remove Crew Member")
-        print("4. Update Crew Member Info")
+        print("4. Update Crew Member Rank")
         print("5. Find Crew Member")
         print("6. Crew Cost Analysis")
         print("7. Additional processes")
@@ -36,7 +36,7 @@ def display_menu():
         elif user_option == "3":
             remove_member()
         elif user_option == "4":
-            x = 3
+            update_rank()
         elif user_option == "5":
             x = 4
         elif user_option == "6":
@@ -191,3 +191,51 @@ def remove_member():
         else:
             print("ID not found. " + remove_ID + " is not registered in the system.")
             return
+        
+
+def update_rank():
+    global N, R, D, ID
+
+    valid_ranks = ["Captain", "Commander", "Lt.Commander", "Lieutenant", "Ensign", "Chief Officer", "Crewman"]
+
+    print("\n--- UPDATE RANK ---")
+    print(" ")
+    print("These are the valid ranks: " + ", ".join(valid_ranks))
+
+    while True:
+
+        ID_entry = input("Enter the ID of the member that will be updated: ").strip()
+
+        if ID_entry in ID:
+
+            find_rank = ID.index(ID_entry)
+            print("Member : " + N[find_rank] + ", Current Rank: " + R[find_rank] + ", ID: " + ID[find_rank])
+
+            new_rank = input("Enter new rank: ").strip().title()
+            R[find_rank] = new_rank
+            print("Updating\n.\n..\n...")
+            print("Rank updated.\n New rank : " + R[find_rank] + ", given to member : " + N[find_rank])
+            break
+        else:
+            print("ID not found. Enter a valid ID.")
+            continue
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+#Start Of Program
+init_database()
+
+display_menu()  
+
