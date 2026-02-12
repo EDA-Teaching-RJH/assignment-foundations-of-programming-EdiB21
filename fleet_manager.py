@@ -75,7 +75,7 @@ def user_verification():
             break
     return user_ID, user_name
 
-
+#display roster was added at the same time as function five, comment line to make a new commit to state Function Six added
 def display_roster():
     global N, R, D, ID
 
