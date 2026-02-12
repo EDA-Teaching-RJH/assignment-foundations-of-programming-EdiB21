@@ -38,7 +38,7 @@ def display_menu():
         elif user_option == "4":
             update_rank()
         elif user_option == "5":
-            x = 4
+            search_crew()
         elif user_option == "6":
             x = 5
         elif user_option == "7":
@@ -75,7 +75,7 @@ def user_verification():
             break
     return user_ID, user_name
 
-#display roster was added at the same time as function five, comment line to make a new commit to state Function Six added
+
 def display_roster():
     global N, R, D, ID
 
@@ -219,6 +219,91 @@ def update_rank():
         else:
             print("ID not found. Enter a valid ID.")
             continue
+
+
+def search_crew():
+    global N, R, D, ID
+
+    print("\n--- FIND CREW MEMBER/S ---")
+    print(" ")
+
+    while True:
+
+        search_option = input("Search by : \n1. Name \n2. Rank \n3. Division \n4. ID \nSelect option: ").strip()
+
+        if search_option == "1":
+            search_name = input("Enter a name to search: ").strip().title()
+
+            if search_name in N:
+                find_name = N.index(search_name)
+                print("Member found: " + N[find_name] + ", Rank: " + R[find_name] + ", Division: " + D[find_name] + ", ID: " + ID[find_name])
+                break
+            else:
+                print("Name not found.")
+                print(" ")
+                print("Would you like to use a different search option? (Y/N)")
+                search_restart = input(": ").strip().upper()
+                if search_restart == "Y":
+                    continue
+                else:
+                    break
+
+        elif search_option == "2":
+            find_rank = input("Enter a rank to search: ").strip().title()
+
+            if find_rank in R:
+                print("Member/s found with rank: " + find_rank + " are -->")
+                for i in range(len(R)):
+                    if R[i] == find_rank:
+                        print("Name: " + N[i] + ", Rank: " + R[i] + ", Division: " + D[i] +", ID: " + ID[i])
+                break
+            else:
+                print("No members found with rank: " + find_rank)
+                print("Would you like to use a different search option? (Y/N)")
+                search_restart = input(": ").strip().upper()
+                if search_restart == "Y":
+                    continue
+                else:
+                    break
+
+        elif search_option == "3":
+            find_division = input("Enter a division to search: ").strip().title()
+
+            if find_division in D:
+                print("Member/s found in division: " + find_division + " are -->")
+                for i in range(len(D)):
+                    if D[i] == find_division:
+                        print("Name: " + N[i] + ", Rank: " + R[i] + ", Division: " + D[i] +", ID: " + ID[i])
+                break
+            else:
+                print("No members found with division: " + find_division)
+                print("Would you like to use a different search option? (Y/N)")
+                search_restart = input(": ").strip().upper()
+                if search_restart == "Y":
+                    continue
+                else:
+                    break
+
+        elif search_option == "4":
+            search_ID = input("Enter an ID to search: ").strip()
+
+            if search_ID in ID:
+                print("Member with ID: " + search_ID + " is:")
+                find_ID = ID.index(search_ID)
+                print("Name: " + N[find_ID] + ", Rank: " + R[find_ID] + ", Division: " + D[find_ID] +", ID: " + ID[find_ID])
+                break
+            else:
+                print("No member found with ID: " + search_ID)
+                print("Would you like to use a different search option? (Y/N)")
+                search_restart = input(": ").strip().upper()
+                if search_restart == "Y":
+                    continue
+                else:
+                    break
+
+
+
+
 
 
 
