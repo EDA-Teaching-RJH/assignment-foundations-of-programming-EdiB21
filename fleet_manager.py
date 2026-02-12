@@ -40,7 +40,7 @@ def display_menu():
         elif user_option == "5":
             search_crew()
         elif user_option == "6":
-            x = 5
+            calculate_payroll()
         elif user_option == "7":
             x = 6
         elif user_option == "8":
@@ -302,8 +302,30 @@ def search_crew():
                     break
 
 
+def calculate_payroll():
+    global N, R, D, ID
 
+    print("\n--- CREW COST ANALYSIS ---")
+    print(" ")
 
+    total_cost = 0
+
+    for i in range(len(R)):
+        if R[i] == "Captain":
+            total_cost += 1000
+        elif R[i] == "Commander":
+            total_cost += 800
+        elif R[i] == "Lt.Commander":
+            total_cost += 600
+        elif R[i] == "Lieutenant":
+            total_cost += 400
+        elif R[i] == "Ensign":
+            total_cost += 250
+        elif R[i] == "Chief Officer":
+            total_cost += 200
+        elif R[i] == "Crewman":
+            total_cost += 100
+    print("Total payroll of crew: " + str(total_cost) + " CRD")
 
 
 
